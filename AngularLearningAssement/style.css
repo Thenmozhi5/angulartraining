@@ -1,0 +1,15 @@
+a{
+    padding:10px;
+    font:bold;
+    font-size : larger;
+    color : rgb(12, 12, 11);
+    
+}
+
+a:hover{
+    background-color: rgb(11, 11, 63);
+    color : white;
+}
+.menu{
+    margin-bottom: 30px;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Success</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .rotateborder{
+            padding:15px 20px;
+            border: 2px solid black;      
+            animation: rotate 2s infinite linear;      
+        }
+        @keyframes rotate{
+            from{
+            border:2px solid black;
+            }
+            to {
+            border:3px solid rgb(235, 103, 21);
+            }
+        }
+        h3{
+            padding:0px;
+            margin:0px;
+        }
+    </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+              var focuseddiv =   $("body");
+              for(var i=0;i<12;i++)
+              {
+                $("div").last().append("<div class='rotateborder'></div>");
+              }
+              $("div").last().append($("div h3"));
+        });
+    </script>
+</head>
+<body> 
+    <div class="menu">
+        <a href="rotatingbanner.html">Rotating Banner</a>
+        <a href="categorypage.html">Category Page</a>
+        <a href="countdowntimer.html">Countdown Timer</a>
+        <a href="report.html">Student Report</a>
+    </div> 
+
+    <div id="rotatingBanner" class="rotateborder" >
+        <h3> A floating banner text which keeps on rotating</h3>
+    </div>
+</body>
+</html>

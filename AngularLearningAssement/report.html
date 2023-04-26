@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <style>
+        th{
+            text-transform: uppercase;
+            text-decoration: underline;
+        }
+        table {
+            border : 2px solid black;
+            margin-top : 80px;
+            margin-left : 80px;
+        }
+
+        table th,td{
+            margin-right: 10px;            
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="menu">
+        <a href="rotatingbanner.html">Rotating Banner</a>
+        <a href="categorypage.html">Category Page</a>
+        <a href="countdowntimer.html">Countdown Timer</a>
+        <a href="report.html">Student Report</a>
+    </div> 
+    <div id="report">
+        <table>
+           
+        </table>
+    </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+        var report;
+        $( document ).ready(function() {        
+        $.getJSON('studentmarksheet.json', function(data) {            
+                    if(data && data.studentMarkSheet)
+                    {
+                        report = data.studentMarkSheet;
+                        loadReport(report);
+                    }
+               });
+
+
+
+            document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+                alert(this);
+                const table = th.closest('table');
+                Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+                    .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+                    .forEach(tr => table.appendChild(tr) );
+            })));           
+        })
+        const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+
+        const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+            v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+            )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+
+        function sort(e)
+        {
+            if(e.classList.contains('ascending'))
+            {
+                e.classList.remove('ascending');
+                e.classList.add('descending');
+            }
+            else if(e.classList.contains('descending'))
+            {
+                e.classList.remove('descending');
+                e.classList.add('reset');
+            }
+            else {
+                loadReport(report);
+                return;
+            } 
+            const table = e.closest('table');
+            Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+                .sort(comparer(Array.from(e.parentNode.children).indexOf(e), this.asc = !this.asc))
+                .forEach(tr => table.appendChild(tr) );
+        }
+
+        function loadReport(report)
+        {
+            if(report)
+            {
+                var table = $("table");  
+                var row = $("tr");
+                table.empty();  
+                var header = Object.keys(report[0]);
+                let headerColumn = "";
+                $.each(header, function(index, columnHeading)
+                {
+                    headerColumn += "<th class='ascending' onclick='sort(this)'>" + columnHeading + "</th>";
+                });  
+                table.append("<tr>" + headerColumn + "</tr>");
+
+                $.each(report, function(index, student){
+                    table.append("<tr><td>" + student.name + "</td><td>" + 
+                        student.class + "</td><td>" +
+                        student.section + "</td><td>" +
+                        student.english + "</td><td>" +
+                        student.methametics + "</td><td>" +
+                        student.chemistry + "</td><td>" )
+                });
+            }
+        }
+    </script>
+</body>
+</html>

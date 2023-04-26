@@ -1,0 +1,50 @@
+{
+    "studentMarkSheet" : [{
+        "name" : "Ram",
+        "class" : "10",
+        "section" : "A",
+        "english" : 60,
+        "methametics" : 100,
+        "chemistry" : 90
+    },
+    {
+        "name" : "Jothi",
+        "class" : "10",
+        "section" : "B",
+        "english" : 70,
+        "methametics" : 90,
+        "chemistry" : 80
+    },
+    {
+        "name" : "kiran",
+        "class" : "11",
+        "section" : "A",
+        "english" : 68,
+        "methametics" : 78,
+        "chemistry" : 70
+    },
+    {
+        "name" : "Narmatha",
+        "class" : "11",
+        "section" : "A",
+        "english" : 67,
+        "methametics" : 56,
+        "chemistry" : 90
+    },
+    {
+        "name" : "John",
+        "class" : "10",
+        "section" : "C",
+        "english" : 40,
+        "methametics" : 70,
+        "chemistry" : 60
+    },
+    {
+        "name" : "Raj",
+        "class" : "10",
+        "section" : "A",
+        "english" : 68,
+        "methametics" : 50,
+        "chemistry" : 56
+    }]
+}
